@@ -6,7 +6,9 @@ import {
      addDoc,
      deleteDoc,
      doc,
-     onSnapshot
+     onSnapshot,
+     where,
+     query
 
 
 } from 'firebase/firestore';
@@ -64,12 +66,21 @@ console.log(books);
     {console.log(err.message);}
     )
 
+
+
+
+
+    //query ref
+    const q= query(colRef,where("title","===","Daniel"));
+
+
+
     // on snap shot
-    onSnapshot(colRef,(snapshot)=>
+    onSnapshot(q,(snapshot)=>
     
     {
 
-
+       
         let books=[];
         snapshot.forEach((doc)=>
         
@@ -82,10 +93,11 @@ console.log(books);
         })
 
         console.log(books);
-
+        
     });
 
 
+ 
  
 
 
